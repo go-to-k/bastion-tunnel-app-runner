@@ -1,0 +1,20 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "cSpell.words": [
+        "dind",
+        "BUILDKIT",
+        "FASTZIP",
+        "cicd",
+        "Awsvpc",
+        "Cooldown",
+        "awslogs",
+        "Fargate",
+        "sessionmanager",
+        "sessionmanagerplugin",
+        "AWSCLIV2",
+        "dockle",
+        "autoscailing",
+    ],
+}
