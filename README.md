@@ -8,6 +8,10 @@ AWSのサブネット(プライベート含む)内にあるリソースに、**�
 
 例えば、ローカルPCのターミナルから、プライベートサブネット内の**EC2・RDS・AuroraなどのMySQLやPostgreSQL**に直接アクセスしたりできるようになります。
 
+## 【アーキテクチャ】
+
+![architecture](./architecture.drawio.svg)
+
 ## 【前提(ローカルPC環境)】
 
 **Macを想定しています。**
