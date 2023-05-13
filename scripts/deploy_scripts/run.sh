@@ -6,6 +6,7 @@ SSM_PARAMETER_NAME="/ManagedInstanceIDParameter/${APP_NAME}"
 AWS_REGION="ap-northeast-1"
 REGISTRATION_FILE="/var/lib/amazon/ssm/registration"
 
+### App Runnerでシグナル受信できない？(発火しなかった)
 cleanup() {
 	# コンテナ終了時、マネージドインスタンス登録を解除
 	echo "Deregister a managed instance..."

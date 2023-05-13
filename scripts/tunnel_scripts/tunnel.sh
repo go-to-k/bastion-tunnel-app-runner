@@ -67,7 +67,7 @@ parameters="{\"host\":[\"${TARGET_HOST}\"],\"portNumber\":[\"${TARGET_DB_PORT}\"
 mkdir -p ${TUNNEL_LOG_DIR_PATH}
 touch ${TUNNEL_LOG_FILE_PATH}
 
-echo "30分経つと接続が切れます。"
+echo "300分経つと接続が切れます。"
 
 aws ssm start-session \
 	--target ${target} \

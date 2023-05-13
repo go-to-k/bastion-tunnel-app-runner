@@ -23,7 +23,7 @@ RUN curl https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northeast-1/lates
     && mv /etc/amazon/ssm/seelog.xml.template /etc/amazon/ssm/seelog.xml \
     && rm /tmp/amazon-ssm-agent.deb
 
-COPY ./deploy_scripts/run.sh /run.sh
+COPY ./scripts/deploy_scripts/run.sh /run.sh
 
 EXPOSE 8080
 

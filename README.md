@@ -1,6 +1,25 @@
 # bastion-tunnel-app-runner
 
-~~解説記事をブログに載せております。→[ECS FargateでSSMセッションマネージャーのリモートホストのポートフォワード環境を構築する](https://go-to-k.hatenablog.com/entry/ecs-fargate-ssm-remote-port-forward)~~
+以下の記事のApp Runner版です。→[ECS FargateでSSMセッションマネージャーのリモートホストのポートフォワード環境を構築する](https://go-to-k.hatenablog.com/entry/ecs-fargate-ssm-remote-port-forward)
+
+## 【注意】
+
+### App Runnerでシグナルキャッチできない？
+
+App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)で、trapによるDeregister処理をしているが、App Runner更新時、SSMから削除されなかった。
+
+```sh
+cleanup() {
+	# コンテナ終了時、マネージドインスタンス登録を解除
+	echo "Deregister a managed instance..."
+	aws ssm deregister-managed-instance --instance-id "$(cat "${REGISTRATION_FILE}" | jq -r .ManagedInstanceID)" || true
+	exit 0
+}
+
+# 省略...
+
+trap "cleanup" EXIT ERR
+```
 
 ## 【概要】
 
@@ -50,36 +69,28 @@ brew install jq
 
 ### VPC、サブネット情報を埋める
 
-- [01_deploy_apprunner.sh](./deploy_scripts/scripts/01_deploy_apprunner.sh)の`VpcID="`、`SubnetID1`、`SubnetID2`にVPC Connectorに指定する自環境のVPC情報を記入する
-  ```sh
-    VpcID="vpc-*****************"
-    SubnetID1="subnet-*****************"
-    SubnetID2="subnet-*****************"
+- [config.ts](./lib/config.ts)の`account`, `VpcID`、`SubnetID1`、`SubnetID2`にVPC Connectorに指定する自環境のVPC情報を記入する
+  ```ts
+  export const stackInput: StackInput = {
+    stackEnv: {
+      // FIXME
+      account: "123456789012", // Your AWS Account ID
+      region: "ap-northeast-1",
+    },
+    appName: "Bastion",
+    vpcConnectorProps: {
+      // FIXME
+      vpcID: "vpc-1234abcd1234abcd00", // Your VPC ID
+      subnetID1: "subnet-1234abcd1234abcd01", // Your Subnet ID
+      subnetID2: "subnet-1234abcd1234abcd02", // Your Subnet ID
+    },
   ```
 
 ### デプロイする
 
-- [デプロイスクリプト](./deploy_scripts)
-  - まとめて用
-    - [./deploy_scripts/deploy.sh](./deploy_scripts/deploy.sh) 
-  - スタックごと用
-    - [./deploy_scripts/scripts/01_deploy_apprunner.sh](./deploy_scripts/scripts/01_deploy_apprunner.sh)
-    - [./deploy_scripts/scripts/02_build.sh](./deploy_scripts/scripts/02_build.sh)
-
-- デプロイコマンド
-  - オプション
-    - [-p profile] (option) : AWSプロファイル名
-    - [-d on|off] (option)(default:on) : off:チェンジセットモード(CloudFormation差分=変更セットの作成のみ)
-  - 以下、どちらかの方法でデプロイしてください
-    - 一括でデプロイする
-      ```sh
-      bash ./deploy_scripts/deploy.sh [-p profile] [-d on|off]
-      ```
-    - スタックごとにそれぞれデプロイする
-      ```sh
-      bash ./deploy_scripts/scripts/01_deploy_apprunner.sh [-p profile] [-d on|off]
-      bash ./deploy_scripts/scripts/02_build.sh [-p profile]
-      ```
+```sh
+cdk deploy
+```
 
 ## 【使い方】
 
@@ -91,7 +102,7 @@ brew install jq
 
 ```sh
 cd bastion-tunnel-app-runner
-sh init.sh
+sh scripts/tunnel_scripts/init.sh
 
 # どのパスでも以下コマンドが叩けるようになります
 tunnel
@@ -99,7 +110,7 @@ tunnel
 
 ### ■スクリプト内で接続先情報を埋めておく(任意)
 
-- [tunnel.sh](./tunnel.sh)で接続先のRDSなどのホストやポートを記入しておくと、オプションなしでも決めたターゲットにアクセスできて便利です。（コマンド実行時のオプションでも指定可能です。）
+- [tunnel.sh](./scripts/tunnel_scripts/tunnel.sh)で接続先のRDSなどのホストやポートを記入しておくと、オプションなしでも決めたターゲットにアクセスできて便利です。（コマンド実行時のオプションでも指定可能です。）
   - `LOCAL_DB_PORT="13306"`
   - `TARGET_DB_PORT="3306"`
   - `TARGET_HOST="abcde.cluster-1234567890.ap-northeast-1.rds.amazonaws.com"`

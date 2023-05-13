@@ -9,7 +9,7 @@
         "cloudWatchLogGroupName": "",
         "cloudWatchEncryptionEnabled": true,
         "idleSessionTimeout": "30",
-        "maxSessionDuration": "30",
+        "maxSessionDuration": "300",
         "cloudWatchStreamingEnabled": true,
         "kmsKeyId": "",
         "runAsEnabled": false,

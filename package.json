@@ -1,0 +1,49 @@
+{
+  "name": "bastion-tunnel-app-runner",
+  "version": "0.1.0",
+  "bin": {
+    "bastion-tunnel-app-runner": "bin/bastion-tunnel-app-runner.js"
+  },
+  "scripts": {
+    "build": "esbuild ./index.ts --bundle --outfile=./index.js --platform=node --minify --allow-overwrite",
+    "watch": "esbuild ./index.ts --bundle --outfile=./index.js --platform=node --minify --allow-overwrite  --watch",
+    "test": "jest",
+    "test:cov": "jest --coverage=true",
+    "test:upd": "jest --updateSnapshot",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.101",
+    "@types/jest": "^27.5.2",
+    "@types/node": "10.17.27",
+    "@types/prettier": "2.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "aws-cdk": "2.79.1",
+    "esbuild": "^0.15.9",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^27.5.1",
+    "prettier": "^2.7.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apprunner-alpha": "^2.54.0-alpha.0",
+    "@aws-sdk/client-apprunner": "^3.229.0",
+    "@aws-sdk/client-ssm": "^3.332.0",
+    "aws-cdk-lib": "2.79.1",
+    "aws-lambda": "^1.0.7",
+    "aws-sdk": "^2.1175.0",
+    "cdk-ecr-deployment": "^2.5.6",
+    "constructs": "^10.0.0"
+  },
+  "volta": {
+    "node": "18.16.0",
+    "yarn": "1.22.17"
+  }
+}
