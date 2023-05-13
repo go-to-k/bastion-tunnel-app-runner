@@ -69,7 +69,7 @@ brew install jq
 
 ### VPC、サブネット情報を埋める
 
-- [config.ts](./lib/config.ts)の`account`, `VpcID`、`SubnetID1`、`SubnetID2`にVPC Connectorに指定する自環境のVPC情報を記入する
+- [config.ts](./lib/config.ts)の`account`、`VpcID`、`SubnetID1`、`SubnetID2`にVPC Connectorに指定する自環境のVPC情報を記入する
   ```ts
   export const stackInput: StackInput = {
     stackEnv: {
@@ -92,7 +92,7 @@ brew install jq
 cdk deploy
 ```
 
-## 【使い方】
+## 【tunnelコマンドの使い方】
 
 ### ■初期化(初回のみ)
 
