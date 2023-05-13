@@ -8,6 +8,8 @@
 
 App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるDeregister処理をしているが、App Runner変更デプロイ時にSSMから削除されなかった。
 
+参考：https://github.com/aws/apprunner-roadmap/issues/176
+
 ```sh
 cleanup() {
 	# コンテナ終了時、マネージドインスタンス登録を解除

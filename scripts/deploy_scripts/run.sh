@@ -7,6 +7,7 @@ AWS_REGION="ap-northeast-1"
 REGISTRATION_FILE="/var/lib/amazon/ssm/registration"
 
 ### App Runnerでシグナルトラップできない？(発火しなかった)
+### https://github.com/aws/apprunner-roadmap/issues/176
 cleanup() {
 	# コンテナ終了時、マネージドインスタンス登録を解除
 	echo "Deregister a managed instance..."
