@@ -4,9 +4,9 @@
 
 ## 【注意】
 
-### App Runnerでシグナルキャッチできない？
+### App Runnerでシグナルトラップできない？
 
-App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)で、trapによるDeregister処理をしているが、App Runner変更デプロイ時、SSMから削除されなかった。
+App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるDeregister処理をしているが、App Runner変更デプロイ時にSSMから削除されなかった。
 
 ```sh
 cleanup() {
