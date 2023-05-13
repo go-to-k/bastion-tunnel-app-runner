@@ -13,7 +13,7 @@ TARGET_HOST="abcde.cluster-1234567890.ap-northeast-1.rds.amazonaws.com"
 
 REGION="ap-northeast-1"
 PROFILE=""
-APP_NAME="Bastion"
+APP_NAME="BastionTunnel"
 SSM_PARAMETER_NAME="/ManagedInstanceIDParameter/${APP_NAME}"
 
 TUNNEL_LOG_DIR_PATH="${CUR_DIR}/tunnel_logs"

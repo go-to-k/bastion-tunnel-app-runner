@@ -1,21 +1,6 @@
-import {
-  Cpu,
-  Memory,
-  Service,
-  Source,
-  VpcConnector,
-} from "@aws-cdk/aws-apprunner-alpha";
-import { CustomResource, RemovalPolicy, Stack } from "aws-cdk-lib";
-import { CfnService } from "aws-cdk-lib/aws-apprunner";
-import { SecurityGroup, Vpc, Subnet } from "aws-cdk-lib/aws-ec2";
-import { Effect, ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
-import { Runtime } from "aws-cdk-lib/aws-lambda";
-import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import { Provider } from "aws-cdk-lib/custom-resources";
+import { Stack } from "aws-cdk-lib";
 import { Construct } from "constructs";
-import { ConfigStackProps, StackInput } from "../config";
-import { Repository } from "aws-cdk-lib/aws-ecr";
-import { DockerImageAsset, Platform } from "aws-cdk-lib/aws-ecr-assets";
+import { ConfigStackProps } from "../config";
 import { SSMConstruct } from "../construct/ssm";
 import { AppRunnerConstruct } from "../construct/app-runner";
 

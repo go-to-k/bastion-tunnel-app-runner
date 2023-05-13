@@ -45,7 +45,7 @@ export const stackInput: StackInput = {
     account: "123456789012", // Your AWS Account ID
     region: "ap-northeast-1",
   },
-  appName: "Bastion",
+  appName: "BastionTunnel",
   vpcConnectorProps: {
     // FIXME
     vpcID: "vpc-1234abcd1234abcd00", // Your VPC ID

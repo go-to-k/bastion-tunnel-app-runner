@@ -47,10 +47,12 @@ export class AppRunnerConstruct extends Construct {
         });
 
         /*
-  Custom Resource Lambda for creation of AutoScalingConfiguration
- */
-        const customResourceLambda = new NodejsFunction(this, "custom", {
-            runtime: Runtime.NODEJS_16_X,
+          Custom Resource Lambda for creation of AutoScalingConfiguration
+        */
+        const customResourceLambda = new NodejsFunction(this, "CustomResourceLambda", {
+            runtime: Runtime.NODEJS_18_X,
+            entry: resolve(__dirname, "../auto-scaling-configuration.ts"),
+            handler: "handler",
             bundling: {
                 forceDockerBundling: false,
             },
