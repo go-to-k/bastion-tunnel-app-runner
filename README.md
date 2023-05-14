@@ -4,7 +4,7 @@
 
 ## 【注意】
 
-### App Runnerでシグナルトラップできない？
+### App Runnerでシグナルトラップ/Graceful Shutdownできない？
 
 App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるDeregister処理をしているが、App Runner変更デプロイ時にSSMから削除されなかった。
 
