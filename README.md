@@ -4,11 +4,9 @@
 
 ## 【注意】
 
-### App Runnerでシグナルトラップ/Graceful Shutdownできない？
+### App Runnerではデプロイ成功後、旧コンテナが5分ほど削除されずに残る
 
-App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるDeregister処理をしているが、App Runner変更デプロイ時にSSMから削除されなかった。
-
-参考：https://github.com/aws/apprunner-roadmap/issues/176
+App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるSSMマネージドインスタンスのDeregister処理をしているが、App Runnerデプロイ成功後、旧コンテナが5分ほど削除されずに残るため、その間はSSMマネージドインスタンスがDeregisterされない。
 
 ```sh
 cleanup() {
