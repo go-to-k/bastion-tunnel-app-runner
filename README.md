@@ -165,11 +165,11 @@ mysql -u my_user -p -h 127.0.0.1 -P13306
 
 ### ■自動切断
 
-`tunnel`コマンド使用後、30分経過したら自動で切断されます。
+`tunnel`コマンド使用後、300分経過したら自動で切断されます。
 
 都度`tunnel`コマンドを投げ直して下さい。
 
-タイムアウト情報は[sessionManagerRunShell.json](./deploy_scripts/sessionManagerRunShell.json)ファイルで変更できます。
+タイムアウト情報は[sessionManagerRunShell.json](./lib/sessionManagerRunShell.json)ファイルで変更できます。
 - idleSessionTimeout
 - maxSessionDuration
 
