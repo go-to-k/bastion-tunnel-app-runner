@@ -1,12 +1,14 @@
 # bastion-tunnel-app-runner
 
-以下の記事のApp Runner版です。→[ECS FargateでSSMセッションマネージャーのリモートホストのポートフォワード環境を構築する](https://go-to-k.hatenablog.com/entry/ecs-fargate-ssm-remote-port-forward)
+以下の記事のApp Runner版です。
+
+→[ECS FargateでSSMセッションマネージャーのリモートホストのポートフォワード環境を構築する](https://go-to-k.hatenablog.com/entry/ecs-fargate-ssm-remote-port-forward)
 
 ## 【注意】
 
 ### App Runnerではデプロイ成功後、旧コンテナが5分ほど削除されずに残る
 
-App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でtrapによるSSMマネージドインスタンスのDeregister処理をしているが、App Runnerデプロイ成功後、旧コンテナが5分ほど削除されずに残るため、その間はSSMマネージドインスタンスがDeregisterされない。
+App Runner上で走るスクリプト[run.sh](./scripts/deploy_scripts/run.sh)でSIGTERM時のGraceful ShutdownとしてtrapによるSSMマネージドインスタンスのDeregister処理をしているが、App Runnerデプロイ成功後、旧コンテナが5分ほど削除されずに残るため、その間は旧コンテナのSSMマネージドインスタンスがDeregisterされない。
 
 ```sh
 cleanup() {
