@@ -35,6 +35,7 @@
   "dependencies": {
     "@aws-cdk/aws-apprunner-alpha": "^2.54.0-alpha.0",
     "@aws-sdk/client-apprunner": "^3.229.0",
+    "@aws-sdk/client-cloudformation": "^3.332.0",
     "@aws-sdk/client-ssm": "^3.332.0",
     "aws-cdk-lib": "2.79.1",
     "aws-lambda": "^1.0.7",

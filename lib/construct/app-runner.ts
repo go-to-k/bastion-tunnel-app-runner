@@ -1,4 +1,4 @@
-import { CustomResource, RemovalPolicy } from "aws-cdk-lib";
+import { CfnOutput, CustomResource, Duration, RemovalPolicy, Stack } from "aws-cdk-lib";
 import { Repository } from "aws-cdk-lib/aws-ecr";
 import { DockerImageAsset, Platform } from "aws-cdk-lib/aws-ecr-assets";
 import { Effect, ManagedPolicy, PolicyStatement, Role, ServicePrincipal } from "aws-cdk-lib/aws-iam";
@@ -56,10 +56,23 @@ export class AppRunnerConstruct extends Construct {
             bundling: {
                 forceDockerBundling: false,
             },
+            timeout: Duration.seconds(900),
             initialPolicy: [
                 new PolicyStatement({
                     actions: ["apprunner:*AutoScalingConfiguration*"],
                     resources: ["*"],
+                }),
+                new PolicyStatement({
+                    actions: ["apprunner:UpdateService"],
+                    resources: ["*"],
+                }),
+                new PolicyStatement({
+                    actions: ["apprunner:ListOperations"],
+                    resources: ["*"],
+                }),
+                new PolicyStatement({
+                    actions: ["cloudformation:DescribeStacks"],
+                    resources: [Stack.of(this).stackId],
                 }),
             ],
         });
@@ -86,6 +99,7 @@ export class AppRunnerConstruct extends Construct {
         autoScalingConfigurationProperties["MinSize"] = String(
             this.stackInput.autoScalingConfigurationArnProps.minSize,
         );
+        autoScalingConfigurationProperties["StackName"] = Stack.of(this).stackName;
 
         const autoScalingConfiguration = new CustomResource(this, "AutoScalingConfiguration", {
             resourceType: "Custom::AutoScalingConfiguration",
@@ -204,5 +218,10 @@ export class AppRunnerConstruct extends Construct {
             protocol: "HTTP",
         };
         cfnAppRunner.addPropertyOverride("SourceConfiguration.AutoDeploymentsEnabled", true);
+
+        new CfnOutput(this, 'AppRunnerServiceArn', {
+            value: appRunnerService.serviceArn,
+            exportName: `${Stack.of(this).stackName}AppRunnerServiceArn`,
+        });
     }
 }
