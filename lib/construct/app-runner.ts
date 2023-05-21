@@ -59,15 +59,11 @@ export class AppRunnerConstruct extends Construct {
             timeout: Duration.seconds(900),
             initialPolicy: [
                 new PolicyStatement({
-                    actions: ["apprunner:*AutoScalingConfiguration*"],
-                    resources: ["*"],
-                }),
-                new PolicyStatement({
-                    actions: ["apprunner:UpdateService"],
-                    resources: ["*"],
-                }),
-                new PolicyStatement({
-                    actions: ["apprunner:ListOperations"],
+                    actions: [
+                        "apprunner:*AutoScalingConfiguration*",
+                        "apprunner:UpdateService",
+                        "apprunner:ListOperations",
+                    ],
                     resources: ["*"],
                 }),
                 new PolicyStatement({
