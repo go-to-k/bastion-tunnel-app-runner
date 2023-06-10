@@ -19,7 +19,7 @@
     "@types/prettier": "2.6.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
-    "aws-cdk": "2.79.1",
+    "aws-cdk": "2.83.1",
     "esbuild": "^0.15.9",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -33,7 +33,7 @@
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "@aws-cdk/aws-apprunner-alpha": "^2.54.0-alpha.0",
+    "@aws-cdk/aws-apprunner-alpha": "^2.83.1-alpha.0",
     "@aws-sdk/client-apprunner": "^3.229.0",
     "@aws-sdk/client-cloudformation": "^3.332.0",
     "@aws-sdk/client-ssm": "^3.332.0",
