@@ -9,6 +9,6 @@ export class BastionTunnelStack extends Stack {
     super(scope, id, props);
 
     new SSMConstruct(this, "SSMConstruct", props);
-    new AppRunnerConstruct(this, "AppRunnerConstruct", props)
+    new AppRunnerConstruct(this, "AppRunnerConstruct", props);
   }
 }

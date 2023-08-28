@@ -6,7 +6,7 @@ import { BastionTunnelStack } from "../lib/resource/bastion-tunnel-app-runner-st
 const getTemplate = (): assertions.Template => {
   const testConfigStackProps: ConfigStackProps = {
     env: {
-      region: configStackProps.env?.region
+      region: configStackProps.env?.region,
     },
     config: configStackProps.config,
   };
@@ -28,15 +28,15 @@ describe("Fine-grained Assertions Tests", () => {
   const template = getTemplate();
 
   test("Bucket created", () => {
-      template.resourceCountIs("AWS::ECR::Repository", 1);
-    });
+    template.resourceCountIs("AWS::ECR::Repository", 1);
+  });
   test("Bucket created", () => {
-      template.resourceCountIs("AWS::SSM::Parameter", 1);
-    });
+    template.resourceCountIs("AWS::SSM::Parameter", 1);
+  });
   test("Bucket created", () => {
-      template.resourceCountIs("AWS::AppRunner::VpcConnector", 1);
-    });
+    template.resourceCountIs("AWS::AppRunner::VpcConnector", 1);
+  });
   test("Bucket created", () => {
-      template.resourceCountIs("AWS::AppRunner::Service", 1);
-    });
+    template.resourceCountIs("AWS::AppRunner::Service", 1);
+  });
 });
